@@ -15,6 +15,25 @@ Page {
             font.pixelSize: 20
             anchors.horizontalCenter: parent.horizontalCenter
         }
+
+        Rectangle {
+    id: root
+    width: 300
+    height: 50
+    color: "white" // Начальный цвет фона
+    property bool isBlack: false // Состояние фона (черный/белый)
+
+    Button {
+        id: themeButton
+        text: 'Switch to dark'
+        anchors.centerIn: parent
+        onClicked: {
+            isBlack = !isBlack;
+            root.color =  "black";
+            themeButton.text = isBlack ? "Switch to White" : "Switch to Black"
+        }
+    }
+}
 TextField {
             id: cityInput
             width: parent.width * 0.8
