@@ -87,7 +87,7 @@ Page {
                     }
 
                     Button {
-                        text: "Прогноз бля"
+                        text: "Прогноз дня"
                         onClicked: daySelected(model);
                     }
                 }

@@ -21,7 +21,7 @@ Page {
         padding: 20
 
         Button {
-            text: "В ЗАД"
+            text: "ВЗАД"
             onClicked: back()
             anchors.horizontalCenter: parent.horizontalCenter
         }
@@ -110,6 +110,11 @@ Page {
                 font.pixelSize: 16
                 color: summaryPage.colort
             }
+            Text {
+                text: "ТЕСТ ТЕСТ  " + parseFloat(weather.hourlyData.get(1).temperature)
+                font.pixelSize: 16
+                color: summaryPage.colort
+            }
         }
         ChartView {
             id: temperatureChart
@@ -118,34 +123,30 @@ Page {
             visible: weather
 
 
-            ValueAxis {
+            DateTimeAxis {
                 id: xAxis
-                labelsVisible: true
-                titleText: "Время"
+                format: "hh:mm:ss"
+                tickCount: 5
             }
 
             ValueAxis {
                 id: yAxis
                 titleText: "Температура, °C"
-                min: weather ? Math.floor(weather.tempMin) - 2 : 0
-                max: weather ? Math.ceil(weather.tempMax) + 2 : 30
+                min: weather ? Math.floor(weather.tempMin)  : 0
+                max: weather ? Math.ceil(weather.tempMax)  : 30
             }
 
             LineSeries {
                 name: "Температура"
-                axisX: xAxis
-                axisY: yAxis
                 color: "#2980b9"
-
-                Component.onCompleted: {
-                    if (weather && weather.hourlyData.length > 0) {
-                        for (var i = 0; i < weather.hourlyData.length; i++) {
-                            append(weather.hourlyData[i].time, weather.hourlyData[i].temperature)
-                        }
-                    }
-                }
+                XYPoint {x: 0; y: parseFloat(weather.hourlyData.get(0).temperature)}
+                XYPoint {x: 1; y: parseFloat(weather.hourlyData.get(1).temperature)}
+                XYPoint {x: 2; y: weather.hourlyData.get(2).temperature}
+                XYPoint {x: 4; y: weather.hourlyData.get(3).temperature}
             }
         }
+
+
     }
    }
 }
