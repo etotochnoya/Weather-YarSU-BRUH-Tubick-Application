@@ -75,6 +75,12 @@ Page {
             color: "#555"
         }
 
+        Text {
+            text: weather ? "Hours: " + weather.hourlyData.length + " гПа" : ""
+            font.pixelSize: 16
+            color: "#555"
+        }
+
         // Данные об осадках (дождь и снег)
         Row {
             spacing: 20
@@ -89,4 +95,40 @@ Page {
                 color: "#555"
             }
         }
-}}
+        ChartView {
+            id: temperatureChart
+            width: parent.width
+            height: 200
+            visible: weather
+
+
+            ValueAxis {
+                id: xAxis
+                labelsVisible: true
+                titleText: "Время"
+            }
+
+            ValueAxis {
+                id: yAxis
+                titleText: "Температура, °C"
+                min: weather ? Math.floor(weather.tempMin) - 2 : 0
+                max: weather ? Math.ceil(weather.tempMax) + 2 : 30
+            }
+
+            LineSeries {
+                name: "Температура"
+                axisX: xAxis
+                axisY: yAxis
+                color: "#2980b9"
+
+                Component.onCompleted: {
+                    if (weather && weather.hourlyData.length > 0) {
+                        for (var i = 0; i < weather.hourlyData.length; i++) {
+                            append(weather.hourlyData[i].time, weather.hourlyData[i].temperature)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,10 +1,11 @@
 import sys
 from pathlib import Path
-from PySide6.QtGui import QGuiApplication
+#from PySide6.QtGui import QGuiApplication
+from PySide6.QtWidgets import QApplication
 from PySide6.QtQml import QQmlApplicationEngine
 
 if __name__ == "__main__":
-    app = QGuiApplication(sys.argv)
+    app = QApplication(sys.argv)
     engine = QQmlApplicationEngine(parent=app)
     # qml_file = Path(__file__).parent / 'view.qml'
     qml_file = Path(__file__).parent / 'main.qml'

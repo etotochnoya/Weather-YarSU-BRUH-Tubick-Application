@@ -34,18 +34,11 @@ Page {
         }
     }
 }
-TextField {
-            id: cityInput
-            width: parent.width * 0.8
-            placeholderText: "Например, Moscow"
-            font.pixelSize: 16
-            anchors.horizontalCenter: parent.horizontalCenter
-        }
         Button {
             text: "Загрузить"
             onClicked: {
                 console.log("Loading weather data...");
-                loadWeatherData(cityInput.text);
+                loadWeatherData("Yaroslavl");
             }
             anchors.horizontalCenter: parent.horizontalCenter
         }
