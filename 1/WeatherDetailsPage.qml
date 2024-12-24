@@ -110,11 +110,6 @@ Page {
                 font.pixelSize: 16
                 color: summaryPage.colort
             }
-            Text {
-                text: "ТЕСТ ТЕСТ  " + parseFloat(weather.hourlyData.get(1).temperature)
-                font.pixelSize: 16
-                color: summaryPage.colort
-            }
         }
         ChartView {
             id: temperatureChart
@@ -139,10 +134,11 @@ Page {
             LineSeries {
                 name: "Температура"
                 color: "#2980b9"
-                XYPoint {x: 0; y: parseFloat(weather.hourlyData.get(0).temperature)}
-                XYPoint {x: 1; y: parseFloat(weather.hourlyData.get(1).temperature)}
-                XYPoint {x: 2; y: weather.hourlyData.get(2).temperature}
-                XYPoint {x: 4; y: weather.hourlyData.get(3).temperature}
+                property var num: parseFloat(weather.hourlyData.get(0).temperature)
+                XYPoint {x: 0; y: -0.11}
+                XYPoint {x: 1; y: -1.78}
+                XYPoint {x: 2; y: 0.1}
+                XYPoint {x: 3; y: -0.93}
             }
         }
 

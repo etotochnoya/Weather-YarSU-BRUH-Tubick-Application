@@ -4,9 +4,9 @@ import QtQuick.Layouts 1.15
 
 ApplicationWindow {
     visible: true
-    width: 400
-    height: 600
-    title: "Weather Forecast"
+    width: 1280
+    height: 720
+    title: "Weather YARSU. uniYAR bruh tubick application"
     color: "#000000"
 
     property var selectedWeather: null

@@ -41,7 +41,8 @@ Page {
          Button {
                 id: themeButton
                 text: 'Switch to dark'
-                x: parent.x
+                x: 100
+                y: -50
                 onClicked: {
                         if (rectrect.isTheme == false) {
                             summaryPage.colorbac = "#3A3B3C"
