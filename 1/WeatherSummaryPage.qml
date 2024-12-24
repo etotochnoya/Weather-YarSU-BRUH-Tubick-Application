@@ -131,6 +131,14 @@ Page {
             }
         }
 
+        Image {
+            id: treesLogo
+            source: "trees.jpg"
+            width: 400
+            height: 400
+            x: 880
+        }
+
     ListModel {
         id: weatherModel
     }
