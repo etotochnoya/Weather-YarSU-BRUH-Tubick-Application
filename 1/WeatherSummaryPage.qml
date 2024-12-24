@@ -2,14 +2,13 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 
 Page {
-    id: weatherSummaryPage
-    signal daySelected(var weatherData)
-
+    id: weatherSummaryPage;
+    signal daySelected(var weatherData);
     Rectangle {
             id: rectrect
             width: parent.width
             height: parent.height
-            color: "orange" // Начальный цвет фона
+            color: summaryPage.colorbac // Начальный цвет фона
             property bool isBlack: false // Состояние фона (черный/белый)
             property var isTheme: false
 
@@ -21,6 +20,7 @@ Page {
         padding: 20
 
         Text {
+            color: summaryPage.colort
             text: "Прогноз погоды"
             font.pixelSize: 20
             anchors.horizontalCenter: parent.horizontalCenter
@@ -37,20 +37,24 @@ Page {
             }
             anchors.horizontalCenter: parent.horizontalCenter
         }
-        Button {
+
+         Button {
                 id: themeButton
                 text: 'Switch to dark'
+                x: parent.x
                 onClicked: {
                         if (rectrect.isTheme == false) {
-                            rectrect.color = "black"
+                            summaryPage.colorbac = "#3A3B3C"
+                            summaryPage.colort = "#FFFDD0"
                             rectrect.isTheme = true
                         }
                         else {
-                            rectrect.color = "white"
+                            summaryPage.colorbac = "#FCF9E6"
+                            summaryPage.colort = "#242526"
                             rectrect.isTheme = false
                         }
                 }
-                 anchors.horizontalCenter: parent.horizontalCenter
+
             }
 
         ListView {
@@ -67,20 +71,23 @@ Page {
                     spacing: 5
 
                     Text {
+                        color: summaryPage.colort
                         text: 'Дата: ' + date
                         font.pixelSize: 14
                     }
                     Text {
+                        color: summaryPage.colort
                         text: 'Температура: ' + tempMin + "°C / " + tempMax + "°C"
                         font.pixelSize: 14
                     }
                     Text {
-                        text: 'Пояснение: "' + description + '"'
+                        color: summaryPage.colort
+                        text: 'Погода: "' + description + '"'
                         font.pixelSize: 14
                     }
 
                     Button {
-                        text: "Подробнее"
+                        text: "Прогноз бля"
                         onClicked: daySelected(model);
                     }
                 }
@@ -93,6 +100,10 @@ Page {
                 }
             }
         }
+
+
+
+
 
     }
 

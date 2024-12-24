@@ -6,6 +6,14 @@ Page {
     id: weatherDetailsPage
     property var weather: null
     signal back()
+    Rectangle {
+            id: rectrect
+            width: parent.width
+            height: parent.height
+            color: summaryPage.colorbac // Начальный цвет фона
+            property bool isBlack: false // Состояние фона (черный/белый)
+
+
 
     Column {
         spacing: 10
@@ -13,7 +21,7 @@ Page {
         padding: 20
 
         Button {
-            text: "Back"
+            text: "В ЗАД"
             onClicked: back()
             anchors.horizontalCenter: parent.horizontalCenter
         }
@@ -23,7 +31,7 @@ Page {
             font.pixelSize: 20
             font.bold: true
             anchors.horizontalCenter: parent.horizontalCenter
-            color: "#000000"
+            color: summaryPage.colort
         }
         Rectangle{
             width: 50
@@ -42,7 +50,7 @@ Page {
         Text {
             text: weather ? "Описание: " + weather.description : "Нет описания."
             font.pixelSize: 16
-            color: "#555"
+            color: summaryPage.colort
         }
 
 
@@ -51,7 +59,7 @@ Page {
         Text {
             text: weather ? "Ощущается как: " + weather.feelsLike : "Нет описания."
             font.pixelSize: 16
-            color: "#555"
+            color: summaryPage.colort
         }
 
 
@@ -60,31 +68,31 @@ Page {
         Text {
             text: weather ? "Температура: " + weather.tempMin + "°C / " + weather.tempMax + "°C" : ""
             font.pixelSize: 16
-            color: "#555"
+            color: summaryPage.colort
         }
 
         Text {
             text: weather ? "Скорость ветра: " + weather.windSpeed + " м/с" : ""
             font.pixelSize: 16
-            color: "#555"
+            color: summaryPage.colort
         }
 
         Text {
             text: weather ? "Направление ветра: " + weather.windDirection + "°" : ""
             font.pixelSize: 16
-            color: "#555"
+            color: summaryPage.colort
         }
 
         Text {
             text: weather ? "Влажность: " + weather.humidity + "%" : ""
             font.pixelSize: 16
-            color: "#555"
+            color: summaryPage.colort
         }
 
         Text {
             text: weather ? "Давление: " + weather.pressure + " гПа" : ""
             font.pixelSize: 16
-            color: "#555"
+            color: summaryPage.colort
         }
 
 
@@ -95,12 +103,12 @@ Page {
             Text {
                 text: weather ? "Дождь: " + weather.rain + " мм" : "Нет данных"
                 font.pixelSize: 16
-                color: "#555"
+                color: summaryPage.colort
             }
             Text {
                 text: weather ? "Снег: " + weather.snow + " мм" : "Нет данных"
                 font.pixelSize: 16
-                color: "#555"
+                color: summaryPage.colort
             }
         }
         ChartView {
@@ -139,4 +147,5 @@ Page {
             }
         }
     }
+   }
 }

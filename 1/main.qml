@@ -19,6 +19,8 @@ ApplicationWindow {
 
         WeatherSummaryPage {
             id: summaryPage
+            property color colorbac: "#FCF9E6"
+            property color colort: "#242526"
             onDaySelected: {
                 selectedWeather = weatherData;
                 stackLayout.currentIndex = 1;
