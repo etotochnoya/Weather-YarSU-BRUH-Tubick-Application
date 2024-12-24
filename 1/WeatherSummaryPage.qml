@@ -93,7 +93,31 @@ Page {
                 }
             }
         }
+
     }
+
+            Image {
+            id: rotatingImage
+            source: "img.jpg"
+            width: 100
+            height: 100
+            x: 0
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    rotationAnimation.start()
+                }
+            }
+            RotationAnimation {
+                id: rotationAnimation
+                target: rotatingImage
+                property: "rotation"
+                from: rotatingImage.rotation
+                to: rotatingImage.rotation + 180
+                duration: 250
+            }
+        }
 
     ListModel {
         id: weatherModel
@@ -140,7 +164,8 @@ Page {
                 rain: item.rain ? item.rain["3h"] : 0,
                 snow: item.snow ? item.snow["3h"] : 0,
                 hourlyData: [],
-                icon: item.weather[0].icon
+                icon: item.weather[0].icon,
+                feelsLike: item.main.feels_like
             };
         } else {
             dailyData[date].tempMin = Math.min(dailyData[date].tempMin, item.main.temp_min);
@@ -169,7 +194,8 @@ Page {
             rain: day.rain,
             snow: day.snow,
             icon: day.icon,
-            hourlyData: day.hourlyData
+            hourlyData: day.hourlyData,
+            feelsLike: day.feelsLike
         });
     });
 }

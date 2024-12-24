@@ -45,6 +45,18 @@ Page {
             color: "#555"
         }
 
+
+
+
+        Text {
+            text: weather ? "Ощущается как: " + weather.feelsLike : "Нет описания."
+            font.pixelSize: 16
+            color: "#555"
+        }
+
+
+
+
         Text {
             text: weather ? "Температура: " + weather.tempMin + "°C / " + weather.tempMax + "°C" : ""
             font.pixelSize: 16
@@ -75,11 +87,7 @@ Page {
             color: "#555"
         }
 
-        Text {
-            text: weather ? "Hours: " + weather.hourlyData.length + " гПа" : ""
-            font.pixelSize: 16
-            color: "#555"
-        }
+
 
         // Данные об осадках (дождь и снег)
         Row {
