@@ -17,23 +17,29 @@ Page {
         }
 
         Rectangle {
-    id: root
-    width: 300
-    height: 50
-    color: "white" // Начальный цвет фона
-    property bool isBlack: false // Состояние фона (черный/белый)
+            id: rect
+            width: 300
+            height: 50
+            color: "black" // Начальный цвет фона
+            property bool isBlack: false // Состояние фона (черный/белый)
+            property var isTheme: false
 
-    Button {
-        id: themeButton
-        text: 'Switch to dark'
-        anchors.centerIn: parent
-        onClicked: {
-            isBlack = !isBlack;
-            root.color =  "black";
-            themeButton.text = isBlack ? "Switch to White" : "Switch to Black"
+            Button {
+                id: themeButton
+                text: 'Switch to dark'
+                anchors.centerIn: parent
+                onClicked: {
+                        if (rect.isTheme == false) {
+                            rect.color = "white"
+                            rect.isTheme = true
+                        }
+                        else {
+                            rect.color = "black"
+                            rect.isTheme = false
+                        }
+                }
+            }
         }
-    }
-}
         Button {
             text: "Загрузить"
             onClicked: {
