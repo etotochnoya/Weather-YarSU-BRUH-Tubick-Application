@@ -5,7 +5,17 @@ Page {
     id: weatherSummaryPage
     signal daySelected(var weatherData)
 
+    Rectangle {
+            id: rectrect
+            width: parent.width
+            height: parent.height
+            color: "orange" // Начальный цвет фона
+            property bool isBlack: false // Состояние фона (черный/белый)
+            property var isTheme: false
+
+
     Column {
+        id: rect
         spacing: 10
         anchors.fill: parent
         padding: 20
@@ -16,30 +26,9 @@ Page {
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
-        Rectangle {
-            id: rect
-            width: 300
-            height: 50
-            color: "black" // Начальный цвет фона
-            property bool isBlack: false // Состояние фона (черный/белый)
-            property var isTheme: false
 
-            Button {
-                id: themeButton
-                text: 'Switch to dark'
-                anchors.centerIn: parent
-                onClicked: {
-                        if (rect.isTheme == false) {
-                            rect.color = "white"
-                            rect.isTheme = true
-                        }
-                        else {
-                            rect.color = "black"
-                            rect.isTheme = false
-                        }
-                }
-            }
-        }
+
+
         Button {
             text: "Загрузить"
             onClicked: {
@@ -48,6 +37,21 @@ Page {
             }
             anchors.horizontalCenter: parent.horizontalCenter
         }
+        Button {
+                id: themeButton
+                text: 'Switch to dark'
+                onClicked: {
+                        if (rectrect.isTheme == false) {
+                            rectrect.color = "black"
+                            rectrect.isTheme = true
+                        }
+                        else {
+                            rectrect.color = "white"
+                            rectrect.isTheme = false
+                        }
+                }
+                 anchors.horizontalCenter: parent.horizontalCenter
+            }
 
         ListView {
             id: weatherListView
@@ -94,6 +98,9 @@ Page {
     ListModel {
         id: weatherModel
     }
+    }
+
+
 
     function loadWeatherData(city) {
     var apiKey = "735723593fa68b5cc5c23d4638109c41";
